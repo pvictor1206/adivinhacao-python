@@ -4,10 +4,51 @@ import random
 def linha():
     print("-="*40)
 
+def funcao_tentativas(numero_escolhido,numero_secreto,c):
+    global tentativa
+    acertou = numero_escolhido == numero_secreto
+    maior = numero_escolhido > numero_secreto
+    menor = numero_escolhido < numero_secreto
+    if acertou:
+        print(f"Você acertou, o número é {numero_secreto}")
+        tentativa = 0
+        linha()
+    else:
+        if maior:
+            tentativa += 1
+            print("Você errou, seu numero foi maior que o numero secreto")
+            print(f"tentativa {tentativa}/{c}")
+            numero_escolhido = int(input("Digite seu número entre 1 e 100: "))
+            while numero_escolhido < 0 or numero_escolhido > 100:
+                numero_escolhido = int(input("Digite seu número entre 1 e 100: "))
+            linha()
+            return numero_escolhido
+
+        elif menor:
+            tentativa += 1
+            print("Você errou, seu numero foi menor que o numero secreto")
+            print(f"tentativa {tentativa}/{c}")
+            numero_escolhido = int(input("Digite seu número entre 1 e 100: "))
+            while numero_escolhido < 0 or numero_escolhido > 100:
+                numero_escolhido = int(input("Digite seu número entre 1 e 100: "))
+            linha()
+            return numero_escolhido
+
 
 linha()
 print("Bem vindo ao jogo de adivinhação")
 linha()
+
+
+dificuldade = int(input("Nivel da dificuldade... \n(1)-Fácil\n(2)-Médio\n(3)-Difícil\nDigite: "))
+
+linha()
+
+
+while dificuldade != 1 and dificuldade != 2 and  dificuldade != 3:
+    dificuldade = int(input("Nivel da dificuldade... \n(1)-Fácil\n(2)-Médio\n(3)-Difícil\nDigite: "))
+    linha()
+
 
 numero_secreto = random.randrange(1, 101)
 
@@ -18,37 +59,33 @@ while numero_escolhido < 0 or numero_escolhido > 100:
 
 linha()
 
+
 tentativa = 0
 
 
+if dificuldade == 1:
+    for c in range(20):
+        numero_escolhido = funcao_tentativas(numero_escolhido,numero_secreto,30)
+        if numero_escolhido == numero_secreto:
+            break
 
-for c in range(3):
-    acertou = numero_escolhido == numero_secreto
-    maior = numero_escolhido > numero_secreto
-    menor = numero_escolhido < numero_secreto
-    if acertou:
-        print(f"Você acertou, o número é {numero_secreto}")
-        linha()
-        break
-    else:
-        if maior:
-            tentativa += 1
-            print("Você errou, seu numero foi maior que o numero secreto")
-            print(f"tentativa {c+1}/3")
-            numero_escolhido = int(input("Digite seu número entre 1 e 100: "))
-            while numero_escolhido < 0 or numero_escolhido > 100:
-                numero_escolhido = int(input("Digite seu número entre 1 e 100: "))
-            linha()
-        elif menor:
-            tentativa += 1
-            print("Você errou, seu numero foi menor que o numero secreto")
-            print(f"tentativa {c+1}/3")
-            numero_escolhido = int(input("Digite seu número entre 1 e 100: "))
-            while numero_escolhido < 0 or numero_escolhido > 100:
-                numero_escolhido = int(input("Digite seu número entre 1 e 100: "))
-            linha()
+elif dificuldade == 2:
+    for c in range(10):
+        numero_escolhido = funcao_tentativas(numero_escolhido,numero_secreto,10)
+        if numero_escolhido == numero_secreto:
+            break
+
+else:
+    for c in range(5):
+        numero_escolhido = funcao_tentativas(numero_escolhido,numero_secreto,5)
+        if numero_escolhido == numero_secreto:
+            break
+
+
     
-if tentativa == 3:
+    
+    
+if tentativa != 0:
     print(f"O número segreto era {numero_secreto}")
 
 print("Fim do Jogo")
