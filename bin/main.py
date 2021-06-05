@@ -6,11 +6,12 @@ def linha():
 
 def funcao_tentativas(numero_escolhido,numero_secreto,c):
     global tentativa
+    global pontos
     acertou = numero_escolhido == numero_secreto
     maior = numero_escolhido > numero_secreto
     menor = numero_escolhido < numero_secreto
     if acertou:
-        print(f"Você acertou, o número é {numero_secreto}")
+        print(f"Você acertou, o número é {numero_secreto}\nPONTUACAO: {pontos}")
         tentativa = 0
         linha()
     else:
@@ -22,6 +23,8 @@ def funcao_tentativas(numero_escolhido,numero_secreto,c):
             while numero_escolhido < 0 or numero_escolhido > 100:
                 numero_escolhido = int(input("Digite seu número entre 1 e 100: "))
             linha()
+            perda_pontos = abs(numero_escolhido - numero_secreto)
+            pontos -= perda_pontos
             return numero_escolhido
 
         elif menor:
@@ -32,8 +35,13 @@ def funcao_tentativas(numero_escolhido,numero_secreto,c):
             while numero_escolhido < 0 or numero_escolhido > 100:
                 numero_escolhido = int(input("Digite seu número entre 1 e 100: "))
             linha()
+            perda_pontos = abs(numero_escolhido - numero_secreto)
+            pontos -= perda_pontos
             return numero_escolhido
 
+
+tentativa = 0
+pontos = 1000
 
 linha()
 print("Bem vindo ao jogo de adivinhação")
@@ -59,10 +67,6 @@ while numero_escolhido < 0 or numero_escolhido > 100:
 
 linha()
 
-
-tentativa = 0
-
-
 if dificuldade == 1:
     for c in range(20):
         numero_escolhido = funcao_tentativas(numero_escolhido,numero_secreto,30)
@@ -86,7 +90,7 @@ else:
     
     
 if tentativa != 0:
-    print(f"O número segreto era {numero_secreto}")
+    print(f"O número segreto era {numero_secreto}\nPONTUACAO: {pontos}")
 
 print("Fim do Jogo")
 
