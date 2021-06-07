@@ -32,4 +32,17 @@ do código para verigicar a variável __name__
 if __name__ == "__main__":
     executar()
 
+'''
+Python é uma linguagem interpretada. Interpretado siginifica que
+não há um processo de compilação que traduz um código fonte em
+algum código nativo, que o computador entende.
+
+Temos um compilador, porém de bytecode. Bytecode é um códigp
+intermediário, normalmente independente do sistema operacional.
+
+
+
+
+'''
+
 
