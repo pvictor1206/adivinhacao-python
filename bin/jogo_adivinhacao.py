@@ -1,11 +1,13 @@
+import random
+
+tentativa = 0
+pontos = 1000
 
 def jogar():
-    import random
-
     def linha():
-        print("-=" * 40)
+        print("-="*40)
 
-    def funcao_tentativas(numero_escolhido, numero_secreto, c):
+    def funcao_tentativas(numero_escolhido,numero_secreto,c):
         global tentativa
         global pontos
         acertou = numero_escolhido == numero_secreto
@@ -40,51 +42,59 @@ def jogar():
                 pontos -= perda_pontos
                 return numero_escolhido
 
-            tentativa = 0
-            pontos = 1000
+    linha()
+    print("Bem vindo ao jogo de adivinhação")
+    linha()
 
-            linha()
-            print("Bem vindo ao jogo de adivinhação")
-            linha()
 
-            dificuldade = int(input("Nivel da dificuldade... \n(1)-Fácil\n(2)-Médio\n(3)-Difícil\nDigite: "))
+    dificuldade = int(input("Nivel da dificuldade... \n(1)-Fácil\n(2)-Médio\n(3)-Difícil\nDigite: "))
 
-            linha()
+    linha()
 
-            while dificuldade != 1 and dificuldade != 2 and dificuldade != 3:
-                dificuldade = int(input("Nivel da dificuldade... \n(1)-Fácil\n(2)-Médio\n(3)-Difícil\nDigite: "))
-                linha()
 
-            numero_secreto = random.randrange(1, 101)
+    while dificuldade != 1 and dificuldade != 2 and  dificuldade != 3:
+        dificuldade = int(input("Nivel da dificuldade... \n(1)-Fácil\n(2)-Médio\n(3)-Difícil\nDigite: "))
+        linha()
 
-            numero_escolhido = int(input("Digite seu número entre 1 e 100: "))
-            while numero_escolhido < 0 or numero_escolhido > 100:
-                numero_escolhido = int(input("Digite seu número entre 1 e 100: "))
 
-            linha()
+    numero_secreto = random.randrange(1, 101)
 
-            if dificuldade == 1:
-                for c in range(20):
-                    numero_escolhido = funcao_tentativas(numero_escolhido, numero_secreto, 30)
-                    if numero_escolhido == numero_secreto:
-                        break
+    numero_escolhido = int(input("Digite seu número entre 1 e 100: "))
+    while numero_escolhido < 0 or numero_escolhido > 100:
+        numero_escolhido = int(input("Digite seu número entre 1 e 100: "))
 
-            elif dificuldade == 2:
-                for c in range(10):
-                    numero_escolhido = funcao_tentativas(numero_escolhido, numero_secreto, 10)
-                    if numero_escolhido == numero_secreto:
-                        break
 
-            else:
-                for c in range(5):
-                    numero_escolhido = funcao_tentativas(numero_escolhido, numero_secreto, 5)
-                    if numero_escolhido == numero_secreto:
-                        break
+    linha()
 
-            if tentativa != 0:
-                print(f"O número segreto era {numero_secreto}\nPONTUACAO: {pontos}")
+    if dificuldade == 1:
+        for c in range(20):
+            numero_escolhido = funcao_tentativas(numero_escolhido,numero_secreto,30)
+            if numero_escolhido == numero_secreto:
+                break
 
-            print("Fim do Jogo")
+    elif dificuldade == 2:
+        for c in range(10):
+            numero_escolhido = funcao_tentativas(numero_escolhido,numero_secreto,10)
+            if numero_escolhido == numero_secreto:
+                break
+
+    else:
+        for c in range(5):
+            numero_escolhido = funcao_tentativas(numero_escolhido,numero_secreto,5)
+            if numero_escolhido == numero_secreto:
+                break
+
+
+        
+        
+        
+    if tentativa != 0:
+        print(f"O número segreto era {numero_secreto}\nPONTUACAO: {pontos}")
+
+    print("Fim do Jogo")
+
+if __name__ == "__main__":
+    jogar()
 
 
 
