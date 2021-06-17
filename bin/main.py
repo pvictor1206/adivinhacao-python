@@ -1,4 +1,5 @@
 import jogo_adivinhacao
+import jogo_forca
 
 def executar():
     def linha():
@@ -18,6 +19,7 @@ def executar():
 
     if(opcao == 1):
         print("Jogando Forca")
+        jogo_forca.jogar()
     else:
         print("jogando Adivinhação")
         jogo_adivinhacao.jogar()
