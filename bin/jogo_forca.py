@@ -6,8 +6,12 @@ def jogar():
     print('Jogo da forca')
     linha()
 
-    palavra_secreta = "banana"
-    letras_acertadas = ["_","_","_","_","_","_"]
+    palavra_secreta = "maça"
+    letras_acertadas = list()
+
+    for lentra in palavra_secreta:
+        letras_acertadas.append("_")
+
     enforcou = False
     acertou = False
     erros = 0
