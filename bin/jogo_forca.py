@@ -1,3 +1,5 @@
+import random
+
 def linha():
     print('=-'*40)
 
@@ -6,7 +8,20 @@ def jogar():
     print('Jogo da forca')
     linha()
 
-    palavra_secreta = "maça"
+    arquivo = open("palavra.txt","r")
+    palavras = list()
+
+    for c in arquivo:
+        c = c.strip()
+        palavras.append(c)
+
+
+    arquivo.close()
+
+    sorteio = random.randrange(0,len(palavras))
+    
+
+    palavra_secreta = palavras[sorteio]
     letras_acertadas = list()
 
     for lentra in palavra_secreta:
@@ -37,6 +52,7 @@ def jogar():
         print("Você ganhou!")
     else:
         print("Você perdeu!")
+    
 
 if __name__ == '__main__':
     jogar()
